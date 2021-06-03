@@ -12,7 +12,7 @@ def write_channels(data):
        data must be a 2d array - [n][12]"""
     cursor, db = get_cursor()
     for chan in data:
-        if len(chan) != 12:
+        if chan is None or len(chan) != 12:
             return False
     q = '''INSERT INTO  channels
             (id, title, description, custom_url,
