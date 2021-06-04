@@ -11,20 +11,20 @@ def write_channels(data):
     """Write channels into database (table channels)
        data must be a 2d array - [n][12]"""
     cursor, db = get_cursor()
-    for chan in data:
-        if chan is None or len(chan) != 12:
-            return False
-    q = '''INSERT INTO  channels
-            (id, title, description, custom_url,
-            published_at, default_language, views,
-            subscribers, hidden_subscribers, videos,
-            keywords, country)
-            VALUES
-            (%s, %s, %s, %s, %s, %s,
-             %s, %s, %s, %s, %s, %s, );'''
     try:
+        for chan in data:
+            if chan is None or len(chan) != 12:
+                return False
+        q = '''INSERT INTO  channels
+                (id, title, description, custom_url,
+                published_at, default_language, views,
+                subscribers, hidden_subscribers, videos,
+                keywords, country)
+                VALUES
+                (%s, %s, %s, %s, %s, %s,
+                 %s, %s, %s, %s, %s, %s, );'''
         cursor.executemany(q, data)
-    except MySQLdb.Error as error:
+    except Exception as error:
         print(error)
         sys.exit("Error:Failed writing new chanles to db")
     cursor.execute()
