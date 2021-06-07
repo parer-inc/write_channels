@@ -26,7 +26,7 @@ def write_channels(data):
         cursor.executemany(q, data)
     except Exception as error:
         print(error)
-        sys.exit("Error:Failed writing new chanles to db")
+        # sys.exit("Error:Failed writing new chanles to db")
     cursor.execute()
     db.commit()
     return True
