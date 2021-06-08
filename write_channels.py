@@ -11,6 +11,9 @@ def write_channels(data):
     """Write channels into database (table channels)
        data must be a 2d array - [n][12]"""
     cursor, db = get_cursor()
+    if not cursor or not db:
+        # log that failed getting cursor
+        return False
     try:
         for chan in data:
             if chan is None or len(chan) != 12:
@@ -26,6 +29,8 @@ def write_channels(data):
         cursor.executemany(q, data)
     except Exception as error:
         print(error)
+        # LOG
+        return False
         # sys.exit("Error:Failed writing new chanles to db")
     cursor.execute()
     db.commit()
