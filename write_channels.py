@@ -26,14 +26,13 @@ def write_channels(data):
                 keywords, country)
                 VALUES
                 (%s, %s, %s, %s, %s, %s,
-                 %s, %s, %s, %s, %s, %s, );'''
+                 %s, %s, %s, %s, %s, %s);'''
         cursor.executemany(q, data)
     except Exception as error:
         print(error)
         # LOG
         return False
         # sys.exit("Error:Failed writing new chanles to db")
-    cursor.execute()
     db.commit()
     return True
 
