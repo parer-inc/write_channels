@@ -19,7 +19,7 @@ def write_channels(data):
         for chan in data:
             if chan is None or len(chan) != 12:
                 return False
-        q = '''INSERT INTO  channels
+        q = '''REPLACE INTO channels
                 (id, title, description, custom_url,
                 published_at, default_language, views,
                 subscribers, hidden_subscribers, videos,
